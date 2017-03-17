@@ -47,7 +47,7 @@ py_library(
 new_git_repository(
     name = "containerregistry",
     remote = "https://github.com/google/containerregistry.git",
-    commit = "8270e81f063d619168f4c95a3415cb932fb3c7e5",
+    commit = "d618b0b677a7b2db940777fbb153ab7ebf63c660",
     build_file_content = """
 py_library(
    name = "containerregistry",
@@ -68,3 +68,11 @@ py_binary(
 )""",
 )
 
+
+load("//:docker.bzl", "docker_pull")
+
+docker_pull(
+   name = "base_image",
+   registry = "gcr.io",
+   repository = "google-appengine/base",
+)
